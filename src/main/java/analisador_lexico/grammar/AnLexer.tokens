@@ -1,0 +1,15 @@
+PalavraChave=1
+NumInt=2
+NumReal=3
+Variavel=4
+Cadeia=5
+Comentario=6
+WS=7
+OpRelacional=8
+OPAritmetico=9
+Delimitador=10
+AbrePar=11
+FechaPar=12
+':'=10
+'('=11
+')'=12
