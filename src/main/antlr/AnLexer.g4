@@ -9,7 +9,7 @@ PalavraChave
 	| 'ENQUANTO' | 'INICIO' | 'FIM' | 'E' | 'OU'
 	;
 
-NumInt	: [+|-]?[0-9]+
+NumInt	: ('+'|'-')?('0'..'9')+
 	;
 
 NumReal	: ('+'|'-')?('0'..'9')+ ('.' ('0'..'9')+)?
@@ -23,9 +23,11 @@ Cadeia 	: '\'' ( ESC_SEQ | ~('\''|'\\') )* '\''
 
 fragment
 ESC_SEQ	: '\\\'';
+
 Comentario
     :   '%' ~('\n'|'\r')* '\r'? '\n' {skip();}
     ;
+
 WS  :   ( ' '
         | '\t'
         | '\r'

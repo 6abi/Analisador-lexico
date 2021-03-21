@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.Token;
 
+import java.sql.SQLOutput;
+
 public class App {
 
     private static final String FILE_LOCATION = "src/main/antlr/files/testing.minip";
@@ -16,9 +18,13 @@ public class App {
             CharStream charStreams = CharStreams.fromFileName(FILE_LOCATION);
 
             AnLexer lexer = new AnLexer(charStreams);
+            Token t = null;
 
-            while (lexer.nextToken().getType() != Token.EOF){
-                System.out.println("Recognized: " + lexer.getToken().toString());
+
+            while ((t = lexer.nextToken()).getType() != Token.EOF){
+                System.out.println("Reconhecido: " + lexer.getText() + "," + lexer.getToken());
+                System.out.println("Elementos: <" + lexer.VOCABULARY.getDisplayName(t.getType()) + "," + t.getText() + ">");
+                System.out.printf("\n");
             }
 
         } catch (Exception e){
