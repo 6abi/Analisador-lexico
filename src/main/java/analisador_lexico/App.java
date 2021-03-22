@@ -11,7 +11,7 @@ import java.sql.SQLOutput;
 
 public class App {
 
-    private static final String FILE_LOCATION = "src/main/antlr/files/testing.minip";
+    private static final String FILE_LOCATION = "src/main/antlr/files/programaTesteErros.minip";
 
     public static void main(String[] args) {
         try {
@@ -23,11 +23,12 @@ public class App {
 
             while ((t = lexer.nextToken()).getType() != Token.EOF){
                 System.out.println("Reconhecido: " + lexer.getText() + "," + lexer.getToken());
-                System.out.println("Elementos: <" + lexer.VOCABULARY.getDisplayName(t.getType()) + "," + t.getText() + ">");
-                System.out.printf("\n");
+                System.out.println("<TOKEN, ENTRADA>: <" + lexer.VOCABULARY.getDisplayName(t.getType()) + "," + t.getText() + ">");
+                System.out.println("");
             }
 
         } catch (Exception e){
+            System.out.println("ERROR");
             System.out.println(e.getMessage());
         }
 
