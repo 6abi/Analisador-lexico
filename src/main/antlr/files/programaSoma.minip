@@ -22,5 +22,4 @@ END;
 
 WRITELN ("A media e ", media);
 
-valor2&;
 END.

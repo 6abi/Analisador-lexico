@@ -11,7 +11,7 @@ import java.sql.SQLOutput;
 
 public class App {
 
-    private static final String FILE_LOCATION = "src/main/antlr/files/programaTesteErros.minip";
+    private static final String FILE_LOCATION = "src/main/antlr/files/programaSoma.minip";
 
     public static void main(String[] args) {
         try {
