@@ -1,0 +1,14 @@
+Program "Teste";
+
+integer x, y, aux;
+
+begin
+    y:= 1;
+    x:= 2;
+    if x < y then
+        aux := x;
+        x:= y;
+        y:= aux;
+    else y:= 1;
+    end
+End.

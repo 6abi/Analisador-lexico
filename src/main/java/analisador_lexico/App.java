@@ -5,21 +5,30 @@ package analisador_lexico;
 import analisador_lexico.grammar.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.Token;
-
-import java.sql.SQLOutput;
-
+import org.antlr.v4.gui.TreeViewer;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 public class App {
 
-    private static final String FILE_LOCATION = "src/main/antlr/files/programaSoma.minip";
+    private static final String FILE_LOCATION = "src/main/antlr/files/programaTesteLexico.minip";
 
     public static void main(String[] args) {
         try {
             CharStream charStreams = CharStreams.fromFileName(FILE_LOCATION);
 
-            AnLexer lexer = new AnLexer(charStreams);
-            Token t = null;
+            MiniPascalLexer lexer = new MiniPascalLexer(charStreams);
 
+            //fluxo de tokens para o parser
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+
+            //parser a partir dos TokenStream
+            MiniPascalParser parser = new MiniPascalParser(tokens);
+            Token t = null;
 
             while ((t = lexer.nextToken()).getType() != Token.EOF){
                 System.out.println("Reconhecido: " + lexer.getText() + "," + lexer.getToken());
@@ -27,6 +36,7 @@ public class App {
                 System.out.println("");
             }
 
+            parser.program();
         } catch (Exception e){
             System.out.println("ERROR");
             System.out.println(e.getMessage());
