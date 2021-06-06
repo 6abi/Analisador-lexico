@@ -209,4 +209,14 @@ public interface MiniPascalListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitType(MiniPascalParser.TypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniPascalParser#relationals}.
+	 * @param ctx the parse tree
+	 */
+	void enterRelationals(MiniPascalParser.RelationalsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniPascalParser#relationals}.
+	 * @param ctx the parse tree
+	 */
+	void exitRelationals(MiniPascalParser.RelationalsContext ctx);
 }

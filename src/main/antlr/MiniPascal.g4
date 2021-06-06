@@ -12,7 +12,7 @@ program : PROGRAM STR SMCOLON statement*?  block
     ;
 
 //bloco
-block : BEGIN_BLOCK variable? statement*? END_BLOCK
+block : BEGIN_BLOCK variable? statement* END_BLOCK
     ;
 
 //statements
@@ -153,11 +153,10 @@ RE          : '>=';
 LR          : '<>';
 EQ          : '==';
 
-RELATIONS: RT | LT | LE | RE | LR
+relationals: RT | LT | LE | RE | LR
     ;
 
 //especiais
-
 SMCOLON : ';'
     ;
 OP : '('

@@ -132,10 +132,4 @@ public interface MiniPascalVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitType(MiniPascalParser.TypeContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link MiniPascalParser#relationals}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRelationals(MiniPascalParser.RelationalsContext ctx);
 }

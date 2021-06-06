@@ -24,20 +24,21 @@ public class MiniPascalParser extends Parser {
 		OR=17, NOT=18, AND=19, TRUE=20, FALSE=21, VAR=22, FLOAT=23, BOOLEAN=24, 
 		STRING=25, INTEGER=26, OPERATORS=27, STR=28, DIGIT=29, ID=30, PLUS=31, 
 		MINUS=32, MULT=33, EQUALS=34, DIV=35, RT=36, LT=37, LE=38, RE=39, LR=40, 
-		EQ=41, RELATIONS=42, SMCOLON=43, OP=44, CP=45, ATTRIB=46, DOT=47, COMMA=48, 
-		COLON=49, DBDOT=50, SPECCHARS=51, COMMENTS=52, WS=53;
+		EQ=41, SMCOLON=42, OP=43, CP=44, ATTRIB=45, DOT=46, COMMA=47, COLON=48, 
+		DBDOT=49, SPECCHARS=50, COMMENTS=51, WS=52;
 	public static final int
 		RULE_myStartingRule = 0, RULE_program = 1, RULE_block = 2, RULE_statement = 3, 
 		RULE_loops = 4, RULE_assignment = 5, RULE_writestatement = 6, RULE_readstatement = 7, 
 		RULE_ifStatement = 8, RULE_whileStatement = 9, RULE_expression = 10, RULE_relationop = 11, 
 		RULE_simpleExpression = 12, RULE_term = 13, RULE_factor = 14, RULE_variable = 15, 
-		RULE_addop = 16, RULE_multop = 17, RULE_vardecl = 18, RULE_type = 19;
+		RULE_addop = 16, RULE_multop = 17, RULE_vardecl = 18, RULE_type = 19, 
+		RULE_relationals = 20;
 	private static String[] makeRuleNames() {
 		return new String[] {
 			"myStartingRule", "program", "block", "statement", "loops", "assignment", 
 			"writestatement", "readstatement", "ifStatement", "whileStatement", "expression", 
 			"relationop", "simpleExpression", "term", "factor", "variable", "addop", 
-			"multop", "vardecl", "type"
+			"multop", "vardecl", "type", "relationals"
 		};
 	}
 	public static final String[] ruleNames = makeRuleNames();
@@ -49,7 +50,7 @@ public class MiniPascalParser extends Parser {
 			"'else'", "'or'", "'not'", "'and'", "'True'", "'False'", "'var'", "'float'", 
 			"'boolean'", "'string'", "'integer'", null, null, null, null, "'+'", 
 			"'-'", "'*'", "'='", "'/'", "'>'", "'<'", "'<='", "'>='", "'<>'", "'=='", 
-			null, "';'", "'('", "')'", "':='", "'.'", "','", "':'", "'..'"
+			"';'", "'('", "')'", "':='", "'.'", "','", "':'", "'..'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -59,9 +60,9 @@ public class MiniPascalParser extends Parser {
 			"DO", "WRITE", "READ", "PRINT", "WHILE", "FOR", "IF", "THEN", "ELSE", 
 			"OR", "NOT", "AND", "TRUE", "FALSE", "VAR", "FLOAT", "BOOLEAN", "STRING", 
 			"INTEGER", "OPERATORS", "STR", "DIGIT", "ID", "PLUS", "MINUS", "MULT", 
-			"EQUALS", "DIV", "RT", "LT", "LE", "RE", "LR", "EQ", "RELATIONS", "SMCOLON", 
-			"OP", "CP", "ATTRIB", "DOT", "COMMA", "COLON", "DBDOT", "SPECCHARS", 
-			"COMMENTS", "WS"
+			"EQUALS", "DIV", "RT", "LT", "LE", "RE", "LR", "EQ", "SMCOLON", "OP", 
+			"CP", "ATTRIB", "DOT", "COMMA", "COLON", "DBDOT", "SPECCHARS", "COMMENTS", 
+			"WS"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -143,17 +144,17 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41); 
+			setState(43); 
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			do {
 				{
 				{
-				setState(40);
+				setState(42);
 				program();
 				}
 				}
-				setState(43); 
+				setState(45); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			} while ( _la==PROGRAM );
@@ -204,29 +205,29 @@ public class MiniPascalParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(45);
-			match(PROGRAM);
-			setState(46);
-			match(STR);
 			setState(47);
+			match(PROGRAM);
+			setState(48);
+			match(STR);
+			setState(49);
 			match(SMCOLON);
-			setState(51);
+			setState(53);
 			_errHandler.sync(this);
 			_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
 				if ( _alt==1+1 ) {
 					{
 					{
-					setState(48);
+					setState(50);
 					statement();
 					}
 					} 
 				}
-				setState(53);
+				setState(55);
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,1,_ctx);
 			}
-			setState(54);
+			setState(56);
 			block();
 			}
 		}
@@ -270,39 +271,37 @@ public class MiniPascalParser extends Parser {
 	public final BlockContext block() throws RecognitionException {
 		BlockContext _localctx = new BlockContext(_ctx, getState());
 		enterRule(_localctx, 4, RULE_block);
+		int _la;
 		try {
-			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
-			match(BEGIN_BLOCK);
 			setState(58);
+			match(BEGIN_BLOCK);
+			setState(60);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,2,_ctx) ) {
 			case 1:
 				{
-				setState(57);
+				setState(59);
 				variable();
 				}
 				break;
 			}
-			setState(63);
+			setState(65);
 			_errHandler.sync(this);
-			_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
-			while ( _alt!=1 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER ) {
-				if ( _alt==1+1 ) {
-					{
-					{
-					setState(60);
-					statement();
-					}
-					} 
+			_la = _input.LA(1);
+			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << WRITE) | (1L << READ) | (1L << WHILE) | (1L << IF) | (1L << VAR) | (1L << FLOAT) | (1L << BOOLEAN) | (1L << STRING) | (1L << INTEGER) | (1L << ID))) != 0)) {
+				{
+				{
+				setState(62);
+				statement();
 				}
-				setState(65);
+				}
+				setState(67);
 				_errHandler.sync(this);
-				_alt = getInterpreter().adaptivePredict(_input,3,_ctx);
+				_la = _input.LA(1);
 			}
-			setState(66);
+			setState(68);
 			match(END_BLOCK);
 			}
 		}
@@ -354,48 +353,48 @@ public class MiniPascalParser extends Parser {
 		StatementContext _localctx = new StatementContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_statement);
 		try {
-			setState(74);
+			setState(76);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,4,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(68);
+				setState(70);
 				vardecl();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(69);
+				setState(71);
 				assignment();
 				}
 				break;
 			case 3:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(70);
+				setState(72);
 				readstatement();
 				}
 				break;
 			case 4:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(71);
+				setState(73);
 				writestatement();
 				}
 				break;
 			case 5:
 				enterOuterAlt(_localctx, 5);
 				{
-				setState(72);
+				setState(74);
 				loops();
 				}
 				break;
 			case 6:
 				enterOuterAlt(_localctx, 6);
 				{
-				setState(73);
+				setState(75);
 				ifStatement();
 				}
 				break;
@@ -436,7 +435,7 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(76);
+			setState(78);
 			whileStatement();
 			}
 		}
@@ -494,7 +493,7 @@ public class MiniPascalParser extends Parser {
 			int _alt;
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(85); 
+			setState(87); 
 			_errHandler.sync(this);
 			_alt = 1;
 			do {
@@ -502,21 +501,21 @@ public class MiniPascalParser extends Parser {
 				case 1:
 					{
 					{
-					setState(78);
+					setState(80);
 					variable();
-					setState(79);
-					match(ATTRIB);
 					setState(81);
+					match(ATTRIB);
+					setState(83);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 					if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << NOT) | (1L << DIGIT) | (1L << ID) | (1L << PLUS) | (1L << MINUS))) != 0)) {
 						{
-						setState(80);
+						setState(82);
 						expression();
 						}
 					}
 
-					setState(83);
+					setState(85);
 					match(SMCOLON);
 					}
 					}
@@ -524,7 +523,7 @@ public class MiniPascalParser extends Parser {
 				default:
 					throw new NoViableAltException(this);
 				}
-				setState(87); 
+				setState(89); 
 				_errHandler.sync(this);
 				_alt = getInterpreter().adaptivePredict(_input,6,_ctx);
 			} while ( _alt!=2 && _alt!=org.antlr.v4.runtime.atn.ATN.INVALID_ALT_NUMBER );
@@ -567,15 +566,15 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
-			match(WRITE);
-			setState(90);
-			match(OP);
 			setState(91);
-			match(STR);
+			match(WRITE);
 			setState(92);
-			match(CP);
+			match(OP);
 			setState(93);
+			match(STR);
+			setState(94);
+			match(CP);
+			setState(95);
 			match(SMCOLON);
 			}
 		}
@@ -625,31 +624,31 @@ public class MiniPascalParser extends Parser {
 		enterRule(_localctx, 14, RULE_readstatement);
 		int _la;
 		try {
-			setState(108);
+			setState(110);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case READ:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(95);
-				match(READ);
-				setState(96);
-				match(OP);
 				setState(97);
+				match(READ);
+				setState(98);
+				match(OP);
+				setState(99);
 				expression();
-				setState(102);
+				setState(104);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				while (_la==COMMA) {
 					{
 					{
-					setState(98);
+					setState(100);
 					match(COMMA);
-					setState(99);
+					setState(101);
 					expression();
 					}
 					}
-					setState(104);
+					setState(106);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
 				}
@@ -658,11 +657,11 @@ public class MiniPascalParser extends Parser {
 			case ID:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(105);
-				match(ID);
-				setState(106);
-				match(CP);
 				setState(107);
+				match(ID);
+				setState(108);
+				match(CP);
+				setState(109);
 				match(SMCOLON);
 				}
 				break;
@@ -714,22 +713,22 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(110);
-			match(IF);
-			setState(111);
-			expression();
 			setState(112);
-			match(THEN);
+			match(IF);
 			setState(113);
+			expression();
+			setState(114);
+			match(THEN);
+			setState(115);
 			statement();
-			setState(116);
+			setState(118);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,9,_ctx) ) {
 			case 1:
 				{
-				setState(114);
+				setState(116);
 				match(ELSE);
-				setState(115);
+				setState(117);
 				statement();
 				}
 				break;
@@ -776,13 +775,13 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(118);
-			match(WHILE);
-			setState(119);
-			expression();
 			setState(120);
-			match(DO);
+			match(WHILE);
 			setState(121);
+			expression();
+			setState(122);
+			match(DO);
+			setState(123);
 			statement();
 			}
 		}
@@ -826,29 +825,29 @@ public class MiniPascalParser extends Parser {
 		enterRule(_localctx, 20, RULE_expression);
 		int _la;
 		try {
-			setState(130);
+			setState(132);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,11,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(123);
+				setState(125);
 				simpleExpression();
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(124);
+				setState(126);
 				simpleExpression();
-				setState(128);
+				setState(130);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 				if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << RT) | (1L << LT) | (1L << LE) | (1L << RE) | (1L << LR))) != 0)) {
 					{
-					setState(125);
+					setState(127);
 					relationop();
-					setState(126);
+					setState(128);
 					simpleExpression();
 					}
 				}
@@ -895,7 +894,7 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(132);
+			setState(134);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << RT) | (1L << LT) | (1L << LE) | (1L << RE) | (1L << LR))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -954,12 +953,12 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(135);
+			setState(137);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			if (_la==PLUS || _la==MINUS) {
 				{
-				setState(134);
+				setState(136);
 				_la = _input.LA(1);
 				if ( !(_la==PLUS || _la==MINUS) ) {
 				_errHandler.recoverInline(this);
@@ -972,23 +971,23 @@ public class MiniPascalParser extends Parser {
 				}
 			}
 
-			setState(137);
+			setState(139);
 			term();
-			setState(143);
+			setState(145);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OR) | (1L << PLUS) | (1L << MINUS))) != 0)) {
 				{
 				{
 				{
-				setState(138);
+				setState(140);
 				addop();
 				}
-				setState(139);
+				setState(141);
 				term();
 				}
 				}
-				setState(145);
+				setState(147);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1039,21 +1038,21 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(146);
+			setState(148);
 			factor();
-			setState(152);
+			setState(154);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AND) | (1L << MULT) | (1L << DIV))) != 0)) {
 				{
 				{
-				setState(147);
+				setState(149);
 				multop();
-				setState(148);
+				setState(150);
 				factor();
 				}
 				}
-				setState(154);
+				setState(156);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
@@ -1100,40 +1099,40 @@ public class MiniPascalParser extends Parser {
 		FactorContext _localctx = new FactorContext(_ctx, getState());
 		enterRule(_localctx, 28, RULE_factor);
 		try {
-			setState(163);
+			setState(165);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case ID:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(155);
+				setState(157);
 				variable();
 				}
 				break;
 			case DIGIT:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(156);
+				setState(158);
 				match(DIGIT);
 				}
 				break;
 			case T__0:
 				enterOuterAlt(_localctx, 3);
 				{
-				setState(157);
-				match(T__0);
-				setState(158);
-				expression();
 				setState(159);
+				match(T__0);
+				setState(160);
+				expression();
+				setState(161);
 				match(T__1);
 				}
 				break;
 			case NOT:
 				enterOuterAlt(_localctx, 4);
 				{
-				setState(161);
+				setState(163);
 				match(NOT);
-				setState(162);
+				setState(164);
 				factor();
 				}
 				break;
@@ -1175,26 +1174,26 @@ public class MiniPascalParser extends Parser {
 		VariableContext _localctx = new VariableContext(_ctx, getState());
 		enterRule(_localctx, 30, RULE_variable);
 		try {
-			setState(171);
+			setState(173);
 			_errHandler.sync(this);
 			switch ( getInterpreter().adaptivePredict(_input,16,_ctx) ) {
 			case 1:
 				enterOuterAlt(_localctx, 1);
 				{
-				setState(165);
+				setState(167);
 				match(ID);
 				}
 				break;
 			case 2:
 				enterOuterAlt(_localctx, 2);
 				{
-				setState(166);
-				match(ID);
-				setState(167);
-				match(T__0);
 				setState(168);
-				expression();
+				match(ID);
 				setState(169);
+				match(T__0);
+				setState(170);
+				expression();
+				setState(171);
 				match(T__1);
 				}
 				break;
@@ -1236,7 +1235,7 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(173);
+			setState(175);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << OR) | (1L << PLUS) | (1L << MINUS))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1284,7 +1283,7 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(175);
+			setState(177);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << AND) | (1L << MULT) | (1L << DIV))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1343,27 +1342,27 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(177);
+			setState(179);
 			type();
-			setState(178);
+			setState(180);
 			variable();
-			setState(183);
+			setState(185);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				setState(179);
+				setState(181);
 				match(COMMA);
-				setState(180);
+				setState(182);
 				variable();
 				}
 				}
-				setState(185);
+				setState(187);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
 			}
-			setState(186);
+			setState(188);
 			match(SMCOLON);
 			}
 		}
@@ -1405,7 +1404,7 @@ public class MiniPascalParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(188);
+			setState(190);
 			_la = _input.LA(1);
 			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << VAR) | (1L << FLOAT) | (1L << BOOLEAN) | (1L << STRING) | (1L << INTEGER))) != 0)) ) {
 			_errHandler.recoverInline(this);
@@ -1428,65 +1427,116 @@ public class MiniPascalParser extends Parser {
 		return _localctx;
 	}
 
+	public static class RelationalsContext extends ParserRuleContext {
+		public TerminalNode RT() { return getToken(MiniPascalParser.RT, 0); }
+		public TerminalNode LT() { return getToken(MiniPascalParser.LT, 0); }
+		public TerminalNode LE() { return getToken(MiniPascalParser.LE, 0); }
+		public TerminalNode RE() { return getToken(MiniPascalParser.RE, 0); }
+		public TerminalNode LR() { return getToken(MiniPascalParser.LR, 0); }
+		public RelationalsContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_relationals; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniPascalListener ) ((MiniPascalListener)listener).enterRelationals(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MiniPascalListener ) ((MiniPascalListener)listener).exitRelationals(this);
+		}
+	}
+
+	public final RelationalsContext relationals() throws RecognitionException {
+		RelationalsContext _localctx = new RelationalsContext(_ctx, getState());
+		enterRule(_localctx, 40, RULE_relationals);
+		int _la;
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(192);
+			_la = _input.LA(1);
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << RT) | (1L << LT) | (1L << LE) | (1L << RE) | (1L << LR))) != 0)) ) {
+			_errHandler.recoverInline(this);
+			}
+			else {
+				if ( _input.LA(1)==Token.EOF ) matchedEOF = true;
+				_errHandler.reportMatch(this);
+				consume();
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\67\u00c1\4\2\t\2"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\66\u00c5\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\3\2\6\2,\n\2\r\2\16\2-\3\3\3\3\3\3\3\3"+
-		"\7\3\64\n\3\f\3\16\3\67\13\3\3\3\3\3\3\4\3\4\5\4=\n\4\3\4\7\4@\n\4\f\4"+
-		"\16\4C\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5M\n\5\3\6\3\6\3\7\3\7\3"+
-		"\7\5\7T\n\7\3\7\3\7\6\7X\n\7\r\7\16\7Y\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t"+
-		"\3\t\3\t\3\t\7\tg\n\t\f\t\16\tj\13\t\3\t\3\t\3\t\5\to\n\t\3\n\3\n\3\n"+
-		"\3\n\3\n\3\n\5\nw\n\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\f\5\f"+
-		"\u0083\n\f\5\f\u0085\n\f\3\r\3\r\3\16\5\16\u008a\n\16\3\16\3\16\3\16\3"+
-		"\16\7\16\u0090\n\16\f\16\16\16\u0093\13\16\3\17\3\17\3\17\3\17\7\17\u0099"+
-		"\n\17\f\17\16\17\u009c\13\17\3\20\3\20\3\20\3\20\3\20\3\20\3\20\3\20\5"+
-		"\20\u00a6\n\20\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u00ae\n\21\3\22\3\22"+
-		"\3\23\3\23\3\24\3\24\3\24\3\24\7\24\u00b8\n\24\f\24\16\24\u00bb\13\24"+
-		"\3\24\3\24\3\25\3\25\3\25\4\65A\2\26\2\4\6\b\n\f\16\20\22\24\26\30\32"+
-		"\34\36 \"$&(\2\7\3\2&*\3\2!\"\4\2\23\23!\"\5\2\25\25##%%\3\2\30\34\2\u00c4"+
-		"\2+\3\2\2\2\4/\3\2\2\2\6:\3\2\2\2\bL\3\2\2\2\nN\3\2\2\2\fW\3\2\2\2\16"+
-		"[\3\2\2\2\20n\3\2\2\2\22p\3\2\2\2\24x\3\2\2\2\26\u0084\3\2\2\2\30\u0086"+
-		"\3\2\2\2\32\u0089\3\2\2\2\34\u0094\3\2\2\2\36\u00a5\3\2\2\2 \u00ad\3\2"+
-		"\2\2\"\u00af\3\2\2\2$\u00b1\3\2\2\2&\u00b3\3\2\2\2(\u00be\3\2\2\2*,\5"+
-		"\4\3\2+*\3\2\2\2,-\3\2\2\2-+\3\2\2\2-.\3\2\2\2.\3\3\2\2\2/\60\7\5\2\2"+
-		"\60\61\7\36\2\2\61\65\7-\2\2\62\64\5\b\5\2\63\62\3\2\2\2\64\67\3\2\2\2"+
-		"\65\66\3\2\2\2\65\63\3\2\2\2\668\3\2\2\2\67\65\3\2\2\289\5\6\4\29\5\3"+
-		"\2\2\2:<\7\b\2\2;=\5 \21\2<;\3\2\2\2<=\3\2\2\2=A\3\2\2\2>@\5\b\5\2?>\3"+
-		"\2\2\2@C\3\2\2\2AB\3\2\2\2A?\3\2\2\2BD\3\2\2\2CA\3\2\2\2DE\7\t\2\2E\7"+
-		"\3\2\2\2FM\5&\24\2GM\5\f\7\2HM\5\20\t\2IM\5\16\b\2JM\5\n\6\2KM\5\22\n"+
-		"\2LF\3\2\2\2LG\3\2\2\2LH\3\2\2\2LI\3\2\2\2LJ\3\2\2\2LK\3\2\2\2M\t\3\2"+
-		"\2\2NO\5\24\13\2O\13\3\2\2\2PQ\5 \21\2QS\7\60\2\2RT\5\26\f\2SR\3\2\2\2"+
-		"ST\3\2\2\2TU\3\2\2\2UV\7-\2\2VX\3\2\2\2WP\3\2\2\2XY\3\2\2\2YW\3\2\2\2"+
-		"YZ\3\2\2\2Z\r\3\2\2\2[\\\7\13\2\2\\]\7.\2\2]^\7\36\2\2^_\7/\2\2_`\7-\2"+
-		"\2`\17\3\2\2\2ab\7\f\2\2bc\7.\2\2ch\5\26\f\2de\7\62\2\2eg\5\26\f\2fd\3"+
-		"\2\2\2gj\3\2\2\2hf\3\2\2\2hi\3\2\2\2io\3\2\2\2jh\3\2\2\2kl\7 \2\2lm\7"+
-		"/\2\2mo\7-\2\2na\3\2\2\2nk\3\2\2\2o\21\3\2\2\2pq\7\20\2\2qr\5\26\f\2r"+
-		"s\7\21\2\2sv\5\b\5\2tu\7\22\2\2uw\5\b\5\2vt\3\2\2\2vw\3\2\2\2w\23\3\2"+
-		"\2\2xy\7\16\2\2yz\5\26\f\2z{\7\n\2\2{|\5\b\5\2|\25\3\2\2\2}\u0085\5\32"+
-		"\16\2~\u0082\5\32\16\2\177\u0080\5\30\r\2\u0080\u0081\5\32\16\2\u0081"+
-		"\u0083\3\2\2\2\u0082\177\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0085\3\2\2"+
-		"\2\u0084}\3\2\2\2\u0084~\3\2\2\2\u0085\27\3\2\2\2\u0086\u0087\t\2\2\2"+
-		"\u0087\31\3\2\2\2\u0088\u008a\t\3\2\2\u0089\u0088\3\2\2\2\u0089\u008a"+
-		"\3\2\2\2\u008a\u008b\3\2\2\2\u008b\u0091\5\34\17\2\u008c\u008d\5\"\22"+
-		"\2\u008d\u008e\5\34\17\2\u008e\u0090\3\2\2\2\u008f\u008c\3\2\2\2\u0090"+
-		"\u0093\3\2\2\2\u0091\u008f\3\2\2\2\u0091\u0092\3\2\2\2\u0092\33\3\2\2"+
-		"\2\u0093\u0091\3\2\2\2\u0094\u009a\5\36\20\2\u0095\u0096\5$\23\2\u0096"+
-		"\u0097\5\36\20\2\u0097\u0099\3\2\2\2\u0098\u0095\3\2\2\2\u0099\u009c\3"+
-		"\2\2\2\u009a\u0098\3\2\2\2\u009a\u009b\3\2\2\2\u009b\35\3\2\2\2\u009c"+
-		"\u009a\3\2\2\2\u009d\u00a6\5 \21\2\u009e\u00a6\7\37\2\2\u009f\u00a0\7"+
-		"\3\2\2\u00a0\u00a1\5\26\f\2\u00a1\u00a2\7\4\2\2\u00a2\u00a6\3\2\2\2\u00a3"+
-		"\u00a4\7\24\2\2\u00a4\u00a6\5\36\20\2\u00a5\u009d\3\2\2\2\u00a5\u009e"+
-		"\3\2\2\2\u00a5\u009f\3\2\2\2\u00a5\u00a3\3\2\2\2\u00a6\37\3\2\2\2\u00a7"+
-		"\u00ae\7 \2\2\u00a8\u00a9\7 \2\2\u00a9\u00aa\7\3\2\2\u00aa\u00ab\5\26"+
-		"\f\2\u00ab\u00ac\7\4\2\2\u00ac\u00ae\3\2\2\2\u00ad\u00a7\3\2\2\2\u00ad"+
-		"\u00a8\3\2\2\2\u00ae!\3\2\2\2\u00af\u00b0\t\4\2\2\u00b0#\3\2\2\2\u00b1"+
-		"\u00b2\t\5\2\2\u00b2%\3\2\2\2\u00b3\u00b4\5(\25\2\u00b4\u00b9\5 \21\2"+
-		"\u00b5\u00b6\7\62\2\2\u00b6\u00b8\5 \21\2\u00b7\u00b5\3\2\2\2\u00b8\u00bb"+
-		"\3\2\2\2\u00b9\u00b7\3\2\2\2\u00b9\u00ba\3\2\2\2\u00ba\u00bc\3\2\2\2\u00bb"+
-		"\u00b9\3\2\2\2\u00bc\u00bd\7-\2\2\u00bd\'\3\2\2\2\u00be\u00bf\t\6\2\2"+
-		"\u00bf)\3\2\2\2\24-\65<ALSYhnv\u0082\u0084\u0089\u0091\u009a\u00a5\u00ad"+
-		"\u00b9";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\3\2\6\2.\n\2\r\2\16\2/\3\3\3"+
+		"\3\3\3\3\3\7\3\66\n\3\f\3\16\39\13\3\3\3\3\3\3\4\3\4\5\4?\n\4\3\4\7\4"+
+		"B\n\4\f\4\16\4E\13\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\5\5\5O\n\5\3\6\3\6"+
+		"\3\7\3\7\3\7\5\7V\n\7\3\7\3\7\6\7Z\n\7\r\7\16\7[\3\b\3\b\3\b\3\b\3\b\3"+
+		"\b\3\t\3\t\3\t\3\t\3\t\7\ti\n\t\f\t\16\tl\13\t\3\t\3\t\3\t\5\tq\n\t\3"+
+		"\n\3\n\3\n\3\n\3\n\3\n\5\ny\n\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3"+
+		"\f\3\f\5\f\u0085\n\f\5\f\u0087\n\f\3\r\3\r\3\16\5\16\u008c\n\16\3\16\3"+
+		"\16\3\16\3\16\7\16\u0092\n\16\f\16\16\16\u0095\13\16\3\17\3\17\3\17\3"+
+		"\17\7\17\u009b\n\17\f\17\16\17\u009e\13\17\3\20\3\20\3\20\3\20\3\20\3"+
+		"\20\3\20\3\20\5\20\u00a8\n\20\3\21\3\21\3\21\3\21\3\21\3\21\5\21\u00b0"+
+		"\n\21\3\22\3\22\3\23\3\23\3\24\3\24\3\24\3\24\7\24\u00ba\n\24\f\24\16"+
+		"\24\u00bd\13\24\3\24\3\24\3\25\3\25\3\26\3\26\3\26\3\67\2\27\2\4\6\b\n"+
+		"\f\16\20\22\24\26\30\32\34\36 \"$&(*\2\7\3\2&*\3\2!\"\4\2\23\23!\"\5\2"+
+		"\25\25##%%\3\2\30\34\2\u00c7\2-\3\2\2\2\4\61\3\2\2\2\6<\3\2\2\2\bN\3\2"+
+		"\2\2\nP\3\2\2\2\fY\3\2\2\2\16]\3\2\2\2\20p\3\2\2\2\22r\3\2\2\2\24z\3\2"+
+		"\2\2\26\u0086\3\2\2\2\30\u0088\3\2\2\2\32\u008b\3\2\2\2\34\u0096\3\2\2"+
+		"\2\36\u00a7\3\2\2\2 \u00af\3\2\2\2\"\u00b1\3\2\2\2$\u00b3\3\2\2\2&\u00b5"+
+		"\3\2\2\2(\u00c0\3\2\2\2*\u00c2\3\2\2\2,.\5\4\3\2-,\3\2\2\2./\3\2\2\2/"+
+		"-\3\2\2\2/\60\3\2\2\2\60\3\3\2\2\2\61\62\7\5\2\2\62\63\7\36\2\2\63\67"+
+		"\7,\2\2\64\66\5\b\5\2\65\64\3\2\2\2\669\3\2\2\2\678\3\2\2\2\67\65\3\2"+
+		"\2\28:\3\2\2\29\67\3\2\2\2:;\5\6\4\2;\5\3\2\2\2<>\7\b\2\2=?\5 \21\2>="+
+		"\3\2\2\2>?\3\2\2\2?C\3\2\2\2@B\5\b\5\2A@\3\2\2\2BE\3\2\2\2CA\3\2\2\2C"+
+		"D\3\2\2\2DF\3\2\2\2EC\3\2\2\2FG\7\t\2\2G\7\3\2\2\2HO\5&\24\2IO\5\f\7\2"+
+		"JO\5\20\t\2KO\5\16\b\2LO\5\n\6\2MO\5\22\n\2NH\3\2\2\2NI\3\2\2\2NJ\3\2"+
+		"\2\2NK\3\2\2\2NL\3\2\2\2NM\3\2\2\2O\t\3\2\2\2PQ\5\24\13\2Q\13\3\2\2\2"+
+		"RS\5 \21\2SU\7/\2\2TV\5\26\f\2UT\3\2\2\2UV\3\2\2\2VW\3\2\2\2WX\7,\2\2"+
+		"XZ\3\2\2\2YR\3\2\2\2Z[\3\2\2\2[Y\3\2\2\2[\\\3\2\2\2\\\r\3\2\2\2]^\7\13"+
+		"\2\2^_\7-\2\2_`\7\36\2\2`a\7.\2\2ab\7,\2\2b\17\3\2\2\2cd\7\f\2\2de\7-"+
+		"\2\2ej\5\26\f\2fg\7\61\2\2gi\5\26\f\2hf\3\2\2\2il\3\2\2\2jh\3\2\2\2jk"+
+		"\3\2\2\2kq\3\2\2\2lj\3\2\2\2mn\7 \2\2no\7.\2\2oq\7,\2\2pc\3\2\2\2pm\3"+
+		"\2\2\2q\21\3\2\2\2rs\7\20\2\2st\5\26\f\2tu\7\21\2\2ux\5\b\5\2vw\7\22\2"+
+		"\2wy\5\b\5\2xv\3\2\2\2xy\3\2\2\2y\23\3\2\2\2z{\7\16\2\2{|\5\26\f\2|}\7"+
+		"\n\2\2}~\5\b\5\2~\25\3\2\2\2\177\u0087\5\32\16\2\u0080\u0084\5\32\16\2"+
+		"\u0081\u0082\5\30\r\2\u0082\u0083\5\32\16\2\u0083\u0085\3\2\2\2\u0084"+
+		"\u0081\3\2\2\2\u0084\u0085\3\2\2\2\u0085\u0087\3\2\2\2\u0086\177\3\2\2"+
+		"\2\u0086\u0080\3\2\2\2\u0087\27\3\2\2\2\u0088\u0089\t\2\2\2\u0089\31\3"+
+		"\2\2\2\u008a\u008c\t\3\2\2\u008b\u008a\3\2\2\2\u008b\u008c\3\2\2\2\u008c"+
+		"\u008d\3\2\2\2\u008d\u0093\5\34\17\2\u008e\u008f\5\"\22\2\u008f\u0090"+
+		"\5\34\17\2\u0090\u0092\3\2\2\2\u0091\u008e\3\2\2\2\u0092\u0095\3\2\2\2"+
+		"\u0093\u0091\3\2\2\2\u0093\u0094\3\2\2\2\u0094\33\3\2\2\2\u0095\u0093"+
+		"\3\2\2\2\u0096\u009c\5\36\20\2\u0097\u0098\5$\23\2\u0098\u0099\5\36\20"+
+		"\2\u0099\u009b\3\2\2\2\u009a\u0097\3\2\2\2\u009b\u009e\3\2\2\2\u009c\u009a"+
+		"\3\2\2\2\u009c\u009d\3\2\2\2\u009d\35\3\2\2\2\u009e\u009c\3\2\2\2\u009f"+
+		"\u00a8\5 \21\2\u00a0\u00a8\7\37\2\2\u00a1\u00a2\7\3\2\2\u00a2\u00a3\5"+
+		"\26\f\2\u00a3\u00a4\7\4\2\2\u00a4\u00a8\3\2\2\2\u00a5\u00a6\7\24\2\2\u00a6"+
+		"\u00a8\5\36\20\2\u00a7\u009f\3\2\2\2\u00a7\u00a0\3\2\2\2\u00a7\u00a1\3"+
+		"\2\2\2\u00a7\u00a5\3\2\2\2\u00a8\37\3\2\2\2\u00a9\u00b0\7 \2\2\u00aa\u00ab"+
+		"\7 \2\2\u00ab\u00ac\7\3\2\2\u00ac\u00ad\5\26\f\2\u00ad\u00ae\7\4\2\2\u00ae"+
+		"\u00b0\3\2\2\2\u00af\u00a9\3\2\2\2\u00af\u00aa\3\2\2\2\u00b0!\3\2\2\2"+
+		"\u00b1\u00b2\t\4\2\2\u00b2#\3\2\2\2\u00b3\u00b4\t\5\2\2\u00b4%\3\2\2\2"+
+		"\u00b5\u00b6\5(\25\2\u00b6\u00bb\5 \21\2\u00b7\u00b8\7\61\2\2\u00b8\u00ba"+
+		"\5 \21\2\u00b9\u00b7\3\2\2\2\u00ba\u00bd\3\2\2\2\u00bb\u00b9\3\2\2\2\u00bb"+
+		"\u00bc\3\2\2\2\u00bc\u00be\3\2\2\2\u00bd\u00bb\3\2\2\2\u00be\u00bf\7,"+
+		"\2\2\u00bf\'\3\2\2\2\u00c0\u00c1\t\6\2\2\u00c1)\3\2\2\2\u00c2\u00c3\t"+
+		"\2\2\2\u00c3+\3\2\2\2\24/\67>CNU[jpx\u0084\u0086\u008b\u0093\u009c\u00a7"+
+		"\u00af\u00bb";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
