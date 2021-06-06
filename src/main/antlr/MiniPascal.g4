@@ -16,7 +16,7 @@ block : BEGIN_BLOCK variable? statement* END_BLOCK
     ;
 
 //statements
-statement : vardecl | assignment  | readstatement | writestatement | loops | ifStatement
+statement : vardecl | assignment  | readstatement | writestatement | printstatement | loops | ifStatement
     ;
 
 //loops
@@ -29,22 +29,24 @@ assignment : (variable ':=' expression? SMCOLON)+;
 //COMANDOS CONSOLE
 writestatement : WRITE '('STR')' SMCOLON;
 readstatement : READ '('expression (',' expression)* | ID ')' SMCOLON;
+printstatement: PRINT '(' expression')' SMCOLON;
 
 //IF e LOOPS
-ifStatement : IF expression THEN statement (: ELSE statement)?;
+ifStatement : IF expression THEN COLON statement ( ELSE COLON statement)?;
 whileStatement: WHILE expression DO statement;
 
-//expressoes - RALACIONAL e OPERACIONAL
+//expressoes - RALACIONAL E  OPERACIONAL
 expression : simpleExpression | simpleExpression (relationop simpleExpression)?;
 relationop: RT| LT| LE| RE| LR ;
 
-simpleExpression: (PLUS | MINUS)? term((addop) term)* ;
-term: factor (multop factor)* ;
-factor: variable | DIGIT | '['expression']' | NOT factor;
+simpleExpression: (PLUS | MINUS)? term(() term)* ;
+term: factor (OPERATORS factor)*;
+factor: variable | DIGIT | '('expression')' | NOT factor;
+
 
 //variavel
 variable: ID | ID '['expression']';
-addop : PLUS | MINUS | OR;
+addop :  PLUS | MINUS |  OR;
 multop : DIV | MULT | AND;
 
 //vardeclpart : (VAR (vardecl SMCOLON)+)?
@@ -124,7 +126,7 @@ STRING: 'string'
     ;
 INTEGER: 'integer'
     ;
-OPERATORS : '-' | '+' | '*' | '/'
+OPERATORS : MINUS | PLUS | MULT | DIV
     ;
 //*********** TOKENS ****************
 

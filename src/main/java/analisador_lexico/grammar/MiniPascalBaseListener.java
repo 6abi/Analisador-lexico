@@ -114,6 +114,18 @@ public class MiniPascalBaseListener implements MiniPascalListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPrintstatement(MiniPascalParser.PrintstatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPrintstatement(MiniPascalParser.PrintstatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterIfStatement(MiniPascalParser.IfStatementContext ctx) { }
 	/**
 	 * {@inheritDoc}

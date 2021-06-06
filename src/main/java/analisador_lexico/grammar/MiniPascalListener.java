@@ -90,6 +90,16 @@ public interface MiniPascalListener extends ParseTreeListener {
 	 */
 	void exitReadstatement(MiniPascalParser.ReadstatementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniPascalParser#printstatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrintstatement(MiniPascalParser.PrintstatementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniPascalParser#printstatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrintstatement(MiniPascalParser.PrintstatementContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniPascalParser#ifStatement}.
 	 * @param ctx the parse tree
 	 */
