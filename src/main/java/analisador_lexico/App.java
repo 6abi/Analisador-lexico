@@ -3,6 +3,7 @@
  */
 package analisador_lexico;
 import analisador_lexico.grammar.*;
+import analisador_lexico.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -10,9 +11,18 @@ import org.antlr.v4.runtime.Token;
 import org.antlr.v4.gui.TreeViewer;
 import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
+import java.awt.HeadlessException;
+import java.io.IOException;
+import java.util.Arrays;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import org.antlr.v4.runtime.ANTLRFileStream;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.BufferedTokenStream;
+
 public class App {
 
-    private static final String FILE_LOCATION = "src/main/antlr/files/programaTesteLexico.minip";
+    private static final String FILE_LOCATION = "src/main/antlr/files/programaTesteSemantico.minip";
 
     public static void main(String[] args) {
         try {
@@ -25,17 +35,16 @@ public class App {
 
             //parser a partir dos TokenStream
             MiniPascalParser parser = new MiniPascalParser(tokens);
-            Token t = null;
 
-            while ((t = lexer.nextToken()).getType() != Token.EOF){
-                System.out.println("Reconhecido: " + lexer.getText() + "," + lexer.getToken());
-                System.out.println("<TOKEN, ENTRADA>: <" + lexer.VOCABULARY.getDisplayName(t.getType()) + "," + t.getText() + ">");
-                System.out.println("");
-            }
+            MiniPascalParser.ProgramContext arvore = parser.program();
 
-            parser.program();
+            //Analisador semantico da linguagem
+            SemanticAnalyzer sa = new SemanticAnalyzer();
+            sa.visitProgram(arvore);
+            MiniPascalUtils.semanticErrors.forEach((s) -> System.out.println(s));
+
         } catch (Exception e){
-            System.out.println("ERROR");
+            System.out.println("UNKNOWN ERROR");
             System.out.println(e.getMessage());
         }
 

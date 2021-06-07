@@ -36,6 +36,7 @@ task genFiles(dependsOn: generateGrammarSource){
 }
 
 generateGrammarSource {
+    arguments += ["-visitor"]
     outputDirectory = new File("src/main/java/analisador_lexico/grammar")
 }
 

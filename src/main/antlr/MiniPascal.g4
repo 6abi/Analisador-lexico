@@ -24,7 +24,7 @@ loops:  whileStatement
     ;
 
 //atribuição
-assignment : (variable ':=' expression? SMCOLON)+;
+assignment : (variable ':=' expression? | ariExpression SMCOLON)+;
 
 //COMANDOS CONSOLE
 writestatement : WRITE '('STR')' SMCOLON;
@@ -36,22 +36,25 @@ ifStatement : IF expression THEN COLON statement ( ELSE COLON statement)?;
 whileStatement: WHILE expression DO statement;
 
 //expressoes - RALACIONAL E  OPERACIONAL
-expression : simpleExpression | simpleExpression (relationop simpleExpression)?;
+expression : simpleExpression (relationop simpleExpression)*;
 relationop: RT| LT| LE| RE| LR ;
 
 simpleExpression: (PLUS | MINUS)? term(() term)* ;
-term: factor (OPERATORS factor)*;
-factor: variable | DIGIT | '('expression')' | NOT factor;
+ariExpression: termAri ( OPERATORS termAri)*;
 
+term: factor (OPERATORS factor)*;
+termAri: factorAri (OPERATORS factorAri)*;
+factor: variable | DIGIT | '('expression')' | NOT factor;
+factorAri: DIGIT | variable | '('expression')' ;
 
 //variavel
-variable: ID | ID '['expression']';
+variable: ID;
 addop :  PLUS | MINUS |  OR;
 multop : DIV | MULT | AND;
 
 //vardeclpart : (VAR (vardecl SMCOLON)+)?
 //    ;
-vardecl : type variable (',' variable)* SMCOLON
+vardecl : type variable SMCOLON
     ;
 type : (INTEGER|STRING|FLOAT|BOOLEAN| VAR)
     ;

@@ -6,14 +6,14 @@ integer aux;
 integer soma;
 
 begin
-    y:= 1;
+    integer y;
     x:= 2;
     if (x < y) then:
         aux:= x;
         x:= y;
         y:= aux;
     else: y:= 1;
-    soma := x + y;
+    integer soma := x + y;
     print(soma);
 end
 End.

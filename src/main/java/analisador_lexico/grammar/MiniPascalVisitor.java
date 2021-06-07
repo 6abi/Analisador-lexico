@@ -1,4 +1,4 @@
-// Generated from C:/analisador_lexico/src/main/antlr\MiniPascal.g4 by ANTLR 4.9.1
+// Generated from MiniPascal.g4 by ANTLR 4.7.2
 
 package analisador_lexico.grammar;
 
@@ -61,6 +61,12 @@ public interface MiniPascalVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReadstatement(MiniPascalParser.ReadstatementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiniPascalParser#printstatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrintstatement(MiniPascalParser.PrintstatementContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiniPascalParser#ifStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -91,17 +97,35 @@ public interface MiniPascalVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleExpression(MiniPascalParser.SimpleExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiniPascalParser#ariExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAriExpression(MiniPascalParser.AriExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiniPascalParser#term}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTerm(MiniPascalParser.TermContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MiniPascalParser#termAri}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTermAri(MiniPascalParser.TermAriContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MiniPascalParser#factor}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFactor(MiniPascalParser.FactorContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiniPascalParser#factorAri}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFactorAri(MiniPascalParser.FactorAriContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MiniPascalParser#variable}.
 	 * @param ctx the parse tree
@@ -132,4 +156,10 @@ public interface MiniPascalVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitType(MiniPascalParser.TypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MiniPascalParser#relationals}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRelationals(MiniPascalParser.RelationalsContext ctx);
 }

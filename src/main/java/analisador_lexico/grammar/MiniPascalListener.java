@@ -150,6 +150,16 @@ public interface MiniPascalListener extends ParseTreeListener {
 	 */
 	void exitSimpleExpression(MiniPascalParser.SimpleExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniPascalParser#ariExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAriExpression(MiniPascalParser.AriExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniPascalParser#ariExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAriExpression(MiniPascalParser.AriExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniPascalParser#term}.
 	 * @param ctx the parse tree
 	 */
@@ -160,6 +170,16 @@ public interface MiniPascalListener extends ParseTreeListener {
 	 */
 	void exitTerm(MiniPascalParser.TermContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MiniPascalParser#termAri}.
+	 * @param ctx the parse tree
+	 */
+	void enterTermAri(MiniPascalParser.TermAriContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniPascalParser#termAri}.
+	 * @param ctx the parse tree
+	 */
+	void exitTermAri(MiniPascalParser.TermAriContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MiniPascalParser#factor}.
 	 * @param ctx the parse tree
 	 */
@@ -169,6 +189,16 @@ public interface MiniPascalListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFactor(MiniPascalParser.FactorContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MiniPascalParser#factorAri}.
+	 * @param ctx the parse tree
+	 */
+	void enterFactorAri(MiniPascalParser.FactorAriContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MiniPascalParser#factorAri}.
+	 * @param ctx the parse tree
+	 */
+	void exitFactorAri(MiniPascalParser.FactorAriContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MiniPascalParser#variable}.
 	 * @param ctx the parse tree
