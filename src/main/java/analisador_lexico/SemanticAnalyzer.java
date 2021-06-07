@@ -25,19 +25,35 @@ public class SemanticAnalyzer extends MiniPascalBaseVisitor<Void> {
             case "FLOAT":
                 typeVar = TypeMiniPascal.FLOAT;
                 break;
+            case "STRING":
+                typeVar = TypeMiniPascal.STRING;
+            case "BOOLEAN":
+                typeVar = TypeMiniPascal.BOOLEAN;
             default:
-                // Nunca irá acontecer, pois o analisador sintático não permite
                 break;
         }
 
         // Verificar se a variável já foi declarada
         if (table.exist(nomeVar)) {
-            MiniPascalUtils.addSemanticError(ctx.variable().ID().getSymbol(), "Declaração Inválida: Variável " + nomeVar + " já existe");
+            MiniPascalUtils.addSemanticError(ctx.variable().ID().getSymbol(), "Declaração Inválida: Variável " + '"' + nomeVar + '"' + " já existe");
         } else {
             table.add(nomeVar, typeVar);
         }
         return super.visitVardecl(ctx);
     }
 
+    @Override
+    public Void visitAssignment(MiniPascalParser.AssignmentContext ctx) {
+        return super.visitAssignment(ctx);
+    }
+
+    @Override
+    public Void visitVariable(MiniPascalParser.VariableContext ctx) {
+        String nomeVar = ctx.ID().getText();
+        if (!table.exist(nomeVar)) {
+            MiniPascalUtils.addSemanticError(ctx.ID().getSymbol(), "Variável " + '"' + nomeVar + '"' + " não foi declarada antes do uso");
+        }
+        return super.visitVariable(ctx);
+    }
 
 }

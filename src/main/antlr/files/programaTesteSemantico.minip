@@ -1,9 +1,8 @@
 Program "Teste";
 
 integer x;
-integer y;
+string y;
 integer aux;
-integer soma;
 
 begin
     integer y;
@@ -13,7 +12,6 @@ begin
         x:= y;
         y:= aux;
     else: y:= 1;
-    integer soma := x + y;
-    print(soma);
+    soma := x + y;
 end
 End.

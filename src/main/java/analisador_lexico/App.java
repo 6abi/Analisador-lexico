@@ -36,11 +36,11 @@ public class App {
             //parser a partir dos TokenStream
             MiniPascalParser parser = new MiniPascalParser(tokens);
 
-            MiniPascalParser.ProgramContext arvore = parser.program();
+            MiniPascalParser.ProgramContext tree = parser.program();
 
             //Analisador semantico da linguagem
             SemanticAnalyzer sa = new SemanticAnalyzer();
-            sa.visitProgram(arvore);
+            sa.visitProgram(tree);
             MiniPascalUtils.semanticErrors.forEach((s) -> System.out.println(s));
 
         } catch (Exception e){

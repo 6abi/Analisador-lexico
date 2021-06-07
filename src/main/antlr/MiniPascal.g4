@@ -29,7 +29,7 @@ assignment : (variable ':=' expression? | ariExpression SMCOLON)+;
 //COMANDOS CONSOLE
 writestatement : WRITE '('STR')' SMCOLON;
 readstatement : READ '('expression (',' expression)* | ID ')' SMCOLON;
-printstatement: PRINT '(' expression')' SMCOLON;
+printstatement: PRINT '(' expression ')' SMCOLON;
 
 //IF e LOOPS
 ifStatement : IF expression THEN COLON statement ( ELSE COLON statement)?;
