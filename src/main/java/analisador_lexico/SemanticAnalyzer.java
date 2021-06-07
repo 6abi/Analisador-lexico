@@ -19,7 +19,7 @@ public class SemanticAnalyzer extends MiniPascalBaseVisitor<Void> {
         String strTypeVar = ctx.type().getText();
         TypeMiniPascal typeVar = TypeMiniPascal.INVALID;
         switch (strTypeVar) {
-            case "INTEIRO":
+            case "INTEGER":
                 typeVar = TypeMiniPascal.INTEGER;
                 break;
             case "FLOAT":
