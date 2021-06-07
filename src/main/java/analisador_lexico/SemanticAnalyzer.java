@@ -42,11 +42,7 @@ public class SemanticAnalyzer extends MiniPascalBaseVisitor<Void> {
         return super.visitVardecl(ctx);
     }
 
-    @Override
-    public Void visitAssignment(MiniPascalParser.AssignmentContext ctx) {
-        return super.visitAssignment(ctx);
-    }
-
+    // Verificar se a variável foi declarada antes do uso
     @Override
     public Void visitVariable(MiniPascalParser.VariableContext ctx) {
         String nomeVar = ctx.ID().getText();
