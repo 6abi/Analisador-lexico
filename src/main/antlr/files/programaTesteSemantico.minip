@@ -1,7 +1,7 @@
 Program "Teste";
 
 integer x;
-string y;
+integer y;
 integer aux;
 
 begin
@@ -11,7 +11,7 @@ begin
         aux:= x;
         x:= y;
         y:= aux;
-    else: y:= 1;
-    soma := x + y;
+    else: y:= 1 &;
+    soma := +x + y;
 end
 End.

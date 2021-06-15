@@ -24,7 +24,7 @@ public class MiniPascalUtils {
             if (ret == null) {
                 ret = aux;
             } else if (ret != aux && aux != SymbolsTable.TypeMiniPascal.INVALID) {
-                addSemanticError(ctx.start, "Expressão " + ctx.getText() + " contém tipos incompatíveis");
+                addSemanticError(ctx.start, "Expressão: " + ctx.getText() + " operação inválida, tipos incompativeis");
                 ret = SymbolsTable.TypeMiniPascal.INVALID;
             }
         }
@@ -38,7 +38,7 @@ public class MiniPascalUtils {
             if (ret == null) {
                 ret = aux;
             } else if (ret != aux && aux != SymbolsTable.TypeMiniPascal.INVALID) {
-                addSemanticError(ctx.start, "Termo " + ctx.getText() + " contém tipos incompatíveis");
+                addSemanticError(ctx.start, "Termo: " + ctx.getText() + " contém tipos incompatíveis");
                 ret = SymbolsTable.TypeMiniPascal.INVALID;
             }
         }

@@ -3,6 +3,7 @@ package analisador_lexico;
 import java.util.HashMap;
 import java.util.Map;
 
+//tipos dos dados
 public class SymbolsTable {
     public enum TypeMiniPascal {
         INTEGER,
@@ -11,7 +12,7 @@ public class SymbolsTable {
         BOOLEAN,
         INVALID
     }
-
+//estrutura da tabela de simbolos: nome e tipo
     class SymbolTableEntry {
         String name;
         TypeMiniPascal type;
@@ -21,7 +22,7 @@ public class SymbolsTable {
             this.type = type;
         }
     }
-
+//Mapa
     private final Map<String, SymbolTableEntry> table;
 
     public SymbolsTable() {

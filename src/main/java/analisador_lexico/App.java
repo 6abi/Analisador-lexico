@@ -44,8 +44,7 @@ public class App {
             MiniPascalUtils.semanticErrors.forEach((s) -> System.out.println(s));
 
         } catch (Exception e){
-            System.out.println("UNKNOWN ERROR");
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
 
     }

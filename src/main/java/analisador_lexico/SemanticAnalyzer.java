@@ -33,6 +33,7 @@ public class SemanticAnalyzer extends MiniPascalBaseVisitor<Void> {
                 break;
         }
 
+
         // Verificar se a variável já foi declarada
         if (table.exist(nomeVar)) {
             MiniPascalUtils.addSemanticError(ctx.variable().ID().getSymbol(), "Declaração Inválida: Variável " + '"' + nomeVar + '"' + " já existe");
@@ -41,6 +42,8 @@ public class SemanticAnalyzer extends MiniPascalBaseVisitor<Void> {
         }
         return super.visitVardecl(ctx);
     }
+
+
 
     // Verificar se a variável foi declarada antes do uso
     @Override

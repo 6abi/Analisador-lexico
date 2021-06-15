@@ -24,7 +24,7 @@ loops:  whileStatement
     ;
 
 //atribuição
-assignment : (variable ':=' expression? | ariExpression SMCOLON)+;
+assignment : (variable ATTRIB expression? | ariExpression SMCOLON)+;
 
 //COMANDOS CONSOLE
 writestatement : WRITE '('STR')' SMCOLON;
